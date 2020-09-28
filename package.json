@@ -1,0 +1,74 @@
+{
+  "_from": "@callinapp/js",
+  "_id": "@callinapp/js@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-SCqtmZ9kBeoCtgZnUygZwqCNMZsHhiTHAF7k/RzUrxvJy9GKbOIN1P6BCJwDex8TITLjFjIGqx4n4KOAjsXY6g==",
+  "_location": "/@callinapp/js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@callinapp/js",
+    "name": "@callinapp/js",
+    "escapedName": "@callinapp%2fjs",
+    "scope": "@callinapp",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@callinapp/js/-/js-1.0.0.tgz",
+  "_shasum": "2149398b3a62b5da0b0511b83c292fecd82484e8",
+  "_spec": "@callinapp/js",
+  "_where": "/home/pnbao/Desktop/Trybe/cia/github",
+  "author": {
+    "name": "Bao Pham"
+  },
+  "bugs": {
+    "url": "https://github.com/callinapp/callinapp-js/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "webrtc-adapter": "^7.7.0"
+  },
+  "deprecated": false,
+  "description": "Call In App SDK for JavaScript",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "rimraf": "^3.0.2",
+    "webpack": "4.42.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://callinapp.com",
+  "keywords": [
+    "callinapp"
+  ],
+  "license": "MIT",
+  "main": "dist/index.min.js",
+  "module": "dist/index.min.js",
+  "name": "@callinapp/js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callinapp/callinapp-js.git"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development",
+    "prepublishOnly": "rimraf dist && npm run build"
+  },
+  "unpkg": "dist/index.min.js",
+  "version": "1.0.0"
+}
