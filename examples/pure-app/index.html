@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <title>Web Demo</title>
+</head>
+<body>
+    <div id="login-container">
+        <form>
+            <label for="wss-url-input" style="display: block; margin-bottom: 10px">
+                WSS URL:
+                <input id="wss-url-input" autocomplete="on" placeholder="Ex: wss://1.1.1.1:8082" />
+            </label>
+            <label for="extension-input" style="display: block; margin-bottom: 10px">
+                Extension:
+                <input id="extension-input" autocomplete="on" placeholder="Extension" />
+            </label>
+            <label for="domain-input" style="display: block; margin-bottom: 10px">
+                Domain:
+                <input id="domain-input" autocomplete="on" placeholder="Domain Name" />
+            </label>
+            <label for="password-input" style="display: block; margin-bottom: 10px">
+                Password:
+                <input id="password-input" autocomplete="on" type="password" placeholder="Password" />
+            </label>
+            <label for="caller-id-name-input" style="display: block; margin-bottom: 10px">
+                Caller ID Name:
+                <input id="caller-id-name-input" autocomplete="on" placeholder="Caller ID Name" />
+            </label>
+            <label for="caller-id-number-input" style="display: block; margin-bottom: 10px">
+                Caller ID Number:
+                <input id="caller-id-number-input" autocomplete="on" placeholder="Caller ID Number" />
+            </label>
+            <label for="email-input" style="display: block; margin-bottom: 10px">
+                Email:
+                <input id="email-input" type="email" autocomplete="on" placeholder="Email" />
+            </label>
+            <button id="login-btn"
+                    type="button"
+                    onclick="onLoginClicked()"
+                    style="display: block; margin-bottom: 10px">Login
+            </button>
+        </form>
+    </div>
+    <div id="logged-in-container" hidden>
+        <div id="call-info-container" hidden="true">
+            <h5>Time: <span id="timer"></span></h5>
+        </div>
+        <div>
+            <input id="number-input" placeholder="Input Number" />
+            <button id="call-btn" onclick="makeCall()">Call</button>
+            <button id="hangup-call-btn" onclick="hangupCall()">Hangup</button>
+            <button id="toggle-mic-btn" onclick="toggleMuteMic()">Mute Mic</button>
+            <button id="toggle-cam-btn" onclick="toggleMuteCam()">Mute Cam</button>
+            <button id="hold-btn" onclick="toggleHold()">Hold/Unhold</button>
+        </div>
+        <div>
+            <input id="dtmf-input" type="tel" placeholder="DTMF" />
+            <button id="dtmf-btn" onclick="sendDtmf()">Send DTMF</button>
+        </div>
+        <div>
+            <input id="message-input" type="text" placeholder="Message" />
+            <button id="send-message-btn" onclick="sendChatMessage()">Send Message</button>
+        </div>
+        <div>
+            <button id="start-screen-btn" onclick="startScreenShare()">Start Screen Share</button>
+            <button id="stop-screen-btn" onclick="stopScreenShare()">Stop Screen Share</button>
+        </div>
+        <div>
+            <button id="logout-btn" onclick="logOut()">Log Out</button>
+        </div>
+        <div>
+            <audio id="ringing" loop src="bell_ring2.wav"></audio>
+            <video id="local" style="width: auto;height: 500px" autoplay></video>
+            <video id="remote" style="margin: auto;width: auto;height: 500px" autoplay></video>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/@callinapp/js@latest/dist/index.min.js"></script>
+    <script type="text/javascript" src="index.js">
+    </script>
+</body>
+</html>
