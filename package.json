@@ -1,8 +1,8 @@
 {
   "_from": "@callinapp/js",
-  "_id": "@callinapp/js@1.0.0",
+  "_id": "@callinapp/js@1.0.1",
   "_inBundle": false,
-  "_integrity": "sha512-SCqtmZ9kBeoCtgZnUygZwqCNMZsHhiTHAF7k/RzUrxvJy9GKbOIN1P6BCJwDex8TITLjFjIGqx4n4KOAjsXY6g==",
+  "_integrity": "sha512-zkkvxagE9XR7ijHoA6O2PQzoA4jV/mQQvVJCxpGjgaWJwNOtoxK7yZ16wSfico2t7D4exeztA1jFxOjAwNV62w==",
   "_location": "/@callinapp/js",
   "_phantomChildren": {},
   "_requested": {
@@ -20,10 +20,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@callinapp/js/-/js-1.0.0.tgz",
-  "_shasum": "2149398b3a62b5da0b0511b83c292fecd82484e8",
+  "_resolved": "https://registry.npmjs.org/@callinapp/js/-/js-1.0.1.tgz",
+  "_shasum": "9f907f6cc1f2cf21a77643ae64359bb3e53d9503",
   "_spec": "@callinapp/js",
-  "_where": "/home/pnbao/Desktop/Trybe/cia/github",
+  "_where": "/home/baopn/Desktop/HH/github",
   "author": {
     "name": "Bao Pham"
   },
@@ -54,7 +54,13 @@
   ],
   "homepage": "https://callinapp.com",
   "keywords": [
-    "callinapp"
+    "call in app",
+    "webrtc",
+    "video call",
+    "video conference",
+    "SIP client",
+    "integrated call",
+    "in-app call"
   ],
   "license": "MIT",
   "main": "dist/index.min.js",
@@ -70,5 +76,5 @@
     "prepublishOnly": "rimraf dist && npm run build"
   },
   "unpkg": "dist/index.min.js",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

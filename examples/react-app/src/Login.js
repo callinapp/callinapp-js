@@ -71,5 +71,11 @@ export default function Login(props) {
     <Button variant="primary" type="submit">
       Login
     </Button>
+
+    <div className="py-3">
+      <h3>
+        For an example account, please email to <a href="mailto:hoan@callinapp.com?subject=[CallInApp]%Example%20Account%20Request">Call In App Team</a>
+      </h3>
+    </div>
   </Form>);
 };
