@@ -25,18 +25,20 @@ Main components:
                     callerIdName: Caller Id Name
               
                     callerIdNumber: Call Id Number
-            }
+                }
               
-            userInfo: {
+            + userInfo: {
                 
-                // Other info here. Ex. email
-            }
+                    // Other info here. Ex. email
+               
+                }
             
-            autoReconnect: Default: true
+            + autoReconnect: Default: true
             
-            autoRecoveryCall: Auto recovery the call when browser tab closed unexpectedly. Default: true
+            + autoRecoveryCall: Auto recovery the call when browser tab closed unexpectedly. Default: true
 
     - **Properties**:
+        - isLoggedIn: Whether user logged in.
     - **Methods**:
         - connect(): Connect to the Call In App server with `user` options
         - close(): Close the connection to the Call In App server.
@@ -157,7 +159,7 @@ Main components:
         + volumeUp(memberId)
         
 ##Examples:
-   Please refer to [example](examples) for detailed usage.
+   Please refer to [examples](examples) for detailed usage.
    
    If you need an account for running the example, please email to [Call In App Team](mailto:hoan@callinapp.com?subject=[CallInApp]%Example%20Account%20Request).
 

@@ -1,18 +1,18 @@
 {
-  "_from": "@callinapp/js",
-  "_id": "@callinapp/js@1.0.1",
+  "_from": "@callinapp/js@latest",
+  "_id": "@callinapp/js@1.0.2",
   "_inBundle": false,
-  "_integrity": "sha512-zkkvxagE9XR7ijHoA6O2PQzoA4jV/mQQvVJCxpGjgaWJwNOtoxK7yZ16wSfico2t7D4exeztA1jFxOjAwNV62w==",
+  "_integrity": "sha512-p+3pmA7c/W7GI1LWfVjnLq3riaw4S6uRc1RjJGI+8kzk8dqZWj0WLtlk+lb3Utc8a6abkmrsd+PDhhSXVgZrtw==",
   "_location": "/@callinapp/js",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "@callinapp/js",
+    "raw": "@callinapp/js@latest",
     "name": "@callinapp/js",
     "escapedName": "@callinapp%2fjs",
     "scope": "@callinapp",
-    "rawSpec": "",
+    "rawSpec": "latest",
     "saveSpec": null,
     "fetchSpec": "latest"
   },
@@ -20,10 +20,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@callinapp/js/-/js-1.0.1.tgz",
-  "_shasum": "9f907f6cc1f2cf21a77643ae64359bb3e53d9503",
-  "_spec": "@callinapp/js",
-  "_where": "/home/baopn/Desktop/HH/github",
+  "_resolved": "https://registry.npmjs.org/@callinapp/js/-/js-1.0.2.tgz",
+  "_shasum": "ec9ac80ea13e5e159705016dddb0e60c81fee469",
+  "_spec": "@callinapp/js@latest",
+  "_where": "/home/pnbao/Desktop/Trybe/cia/github",
   "author": {
     "name": "Bao Pham"
   },
@@ -76,5 +76,5 @@
     "prepublishOnly": "rimraf dist && npm run build"
   },
   "unpkg": "dist/index.min.js",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
