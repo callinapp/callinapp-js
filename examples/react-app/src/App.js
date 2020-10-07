@@ -9,15 +9,20 @@ import { useSelector } from 'react-redux';
 const cia = CallInAppService.getInstance();
 
 function App() {
-  const user = useSelector(state => state.user || {});
-  const call = useSelector(state => state.call || {});
+  const ciaUser = useSelector(state => state.user || {});
+  const ciaCall = useSelector(state => state.call || {});
 
   const login = useCallback((user) => {
     cia.login(user);
     console.log(user);
   }, []);
 
+  const logout = useCallback(() => {
+    cia.logout();
+  }, []);
+
   const handleLogin = (user) => {
+    logout();
     login(user);
   };
 
@@ -26,7 +31,7 @@ function App() {
   };
 
   const handleLogout = () => {
-    cia.logout();
+    logout();
   };
 
   useEffect(() => {
@@ -37,19 +42,19 @@ function App() {
     <Container>
       <div className={'py-3 row'}>
         <div className={'col-7'}>
-          <div>Connection Status: <span className={'text-primary'}>{user.connectionStatus}</span></div>
-          <div>User Status: <span className={'text-primary'}>{user.userStatus}</span></div>
+          <div>Connection Status: <span className={'text-primary'}>{ciaUser.connectionStatus}</span></div>
+          <div>User Status: <span className={'text-primary'}>{ciaUser.userStatus}</span></div>
         </div>
         {
-          user.user ? (<div className={'col-5 d-flex justify-content-end align-items-center'}>
+          ciaUser.user ? (<div className={'col-5 d-flex justify-content-end align-items-center'}>
             <Button type="button" variant="danger" onClick={handleLogout}>Logout</Button>
           </div>) : null
         }
       </div>
 
-      { !user.user ? <Login handleLogin={handleLogin} user={cia.user}/> : null }
-      { (user.user && !call.call) ? <Dialpad handleMakeCall={handleMakeCall}/> : null }
-      { call.call ? <InCall call={call.call} /> : null }
+      { !ciaUser.user ? <Login handleLogin={handleLogin} user={cia.user}/> : null }
+      { (ciaUser.user && !ciaCall.call) ? <Dialpad handleMakeCall={handleMakeCall}/> : null }
+      { ciaCall.call ? <InCall call={ciaCall.call} /> : null }
     </Container>
   );
 }

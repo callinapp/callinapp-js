@@ -40,7 +40,6 @@ export default class CallInAppService {
   }
 
   login(options) {
-    this.logout();
     this.client = new CallInAppSession(options);
     this.user = options;
     this._subscribeEvents();
