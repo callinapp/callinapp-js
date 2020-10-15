@@ -1,3 +1,5 @@
+##### - V1.0.4
+ + Fixed: React example app still connect after logged because component is re-created.
 ##### - V1.0.3
  + Add storage as async server
  + Improve functions
