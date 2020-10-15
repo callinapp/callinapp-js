@@ -35,6 +35,12 @@ function App() {
   };
 
   useEffect(() => {
+    // Ignore if user has logged in
+    if (cia.isLoggedIn) {
+      console.log('User has logged in');
+      return;
+    }
+
     cia.user && login(cia.user);
   }, [login]);
 

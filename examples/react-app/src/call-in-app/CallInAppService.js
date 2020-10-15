@@ -24,6 +24,10 @@ export default class CallInAppService {
     return _callInAppServiceInstance;
   };
 
+  get isLoggedIn() {
+    return this.client && this.client.isLoggedIn;
+  }
+
   constructor() {
     this.activeCall = null;
     this.activeConference = null;
@@ -40,6 +44,7 @@ export default class CallInAppService {
   }
 
   login(options) {
+    this.logout(true);
     this.client = new CallInAppSession(options);
     this.user = options;
     this._subscribeEvents();
@@ -52,8 +57,8 @@ export default class CallInAppService {
     })
   }
 
-  logout() {
-    this.client && this.client.close();
+  logout(keepSession = false) {
+    this.client && this.client.close(keepSession);
 
     // Remove saved user from localStorage
     localStorage.removeItem(_savedLoggedInUserKey);
