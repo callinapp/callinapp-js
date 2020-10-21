@@ -22,7 +22,6 @@ function App() {
   }, []);
 
   const handleLogin = (user) => {
-    logout();
     login(user);
   };
 
