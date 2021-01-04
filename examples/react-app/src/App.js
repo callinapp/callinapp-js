@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Modal } from 'react-bootstrap';
 import Login from './Login';
 import Dialpad from './Dialpad';
 import InCall from './InCall';
@@ -33,6 +33,14 @@ function App() {
     logout();
   };
 
+  const rejectIncomingCall = () => {
+    cia.hangupIncomingCall();
+  };
+
+  const answerIncomingCall = () => {
+    cia.answerIncomingCall();
+  };
+
   useEffect(() => {
     // Ignore if user has logged in
     if (cia.isLoggedIn) {
@@ -60,6 +68,22 @@ function App() {
       { !ciaUser.user ? <Login handleLogin={handleLogin} user={cia.user}/> : null }
       { (ciaUser.user && !ciaCall.call) ? <Dialpad handleMakeCall={handleMakeCall}/> : null }
       { ciaCall.call ? <InCall call={ciaCall.call} /> : null }
+
+      <Modal show={!!ciaCall.incomingCall}>
+        <Modal.Header closeButton={false}>
+          <Modal.Title>Incoming Call</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {ciaCall.incomingCall ? (ciaCall.incomingCall.options.callerIdName || ciaCall.incomingCall.options.callerIdNumber) : 'Someone'} is calling you...!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={rejectIncomingCall}>
+            Reject
+          </Button>
+          <Button variant="primary" onClick={answerIncomingCall}>
+            Answer
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }

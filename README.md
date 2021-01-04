@@ -57,8 +57,11 @@ Main components:
                     destinationNumber: (required) Extension or number
                     callerIdName: (optional)
                     callerIdNumber: (optional)
-                    
+                    useVideo: (optional) true/false/MediaTrackConstraints
+                    useAudio: (optional) true/false/MediaTrackConstraints
                 }
+                
+        ** Please refer the detailed docs for [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) if you really want to use `useVideo` and `useVideo`.
 
 - **CallInAppEvent**: Events will be emitted during the Call In App Session.
     We can catch those events with callback functions:

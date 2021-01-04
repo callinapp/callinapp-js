@@ -1,3 +1,5 @@
+##### - V1.0.5
+ + Update example
 ##### - V1.0.4
  + Fixed: React example app still connect after logged because component is re-created.
 ##### - V1.0.3

@@ -74,10 +74,16 @@ function login() {
 
   client.on(CallInAppEvent.ON_INCOMING_CALL, (err, call) => {
     console.log('[App] Incoming call', call);
-    let t = setTimeout(() => {
+    // let t = setTimeout(() => {
+    //   answerCall(call);
+    //   clearTimeout(t);
+    // }, 5000);
+    let answer = confirm(`${call.options.callerIdName || call.options.callerIdNumber} is calling you`);
+    if (answer) {
       answerCall(call);
-      clearTimeout(t);
-    }, 5000);
+    } else {
+      call.hangup();
+    }
   });
 
   client.on(CallInAppEvent.ON_RECOVERY_CALL, (err, call) => {

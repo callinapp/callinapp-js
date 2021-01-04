@@ -6,7 +6,7 @@ import {
   UPDATE_CONNECTION_STATUS,
   UPDATE_USER_STATUS,
   NEW_CALL,
-  TIME_ELAPSED, REMOTE_STREAM, JOIN_CONFERENCE, LEAVE_CONFERENCE, LOCAL_STREAM, UPDATE_CALL_STATE
+  TIME_ELAPSED, REMOTE_STREAM, JOIN_CONFERENCE, LEAVE_CONFERENCE, LOCAL_STREAM, UPDATE_CALL_STATE, INCOMING_CALL
 } from './actions/actionTypes'
 import store from '../store';
 
@@ -31,6 +31,7 @@ export default class CallInAppService {
   constructor() {
     this.activeCall = null;
     this.activeConference = null;
+    this.incomingCall = null;
 
     this._setActiveCall = this._setActiveCall.bind(this);
     this._startTimer = this._startTimer.bind(this);
@@ -138,10 +139,12 @@ export default class CallInAppService {
 
     this.client.on(CallInAppEvent.ON_INCOMING_CALL, (err, call) => {
       console.log('[CallInAppService] Incoming call', call);
-      let t = setTimeout(() => {
-        this.answerCall(call);
-        clearTimeout(t);
-      }, 5000);
+      // let t = setTimeout(() => {
+      //   this.answerCall(call);
+      //   clearTimeout(t);
+      // }, 5000);
+
+      this._setIncomingCall(call);
     });
 
     this.client.on(CallInAppEvent.ON_RECOVERY_CALL, (err, call) => {
@@ -237,6 +240,8 @@ export default class CallInAppService {
           if (this.activeCall && this.activeCall.id === call.id) {
             this._setActiveCall(null);
             this._stopTimer();
+          } else if (this.incomingCall && this.incomingCall.id === call.id) {
+            this._setIncomingCall(null);
           }
           break;
         default:
@@ -255,12 +260,37 @@ export default class CallInAppService {
     })
   }
 
+  _setIncomingCall(call) {
+    this.incomingCall = call;
+    store.dispatch({
+      type: INCOMING_CALL,
+      payload: {
+        incomingCall: call
+      }
+    })
+  }
+
   makeCall(destinationNumber) {
     const data = {
       destinationNumber
     };
     this.hangupCall();
     this.activeCall = this.client.newCall(data);
+  }
+
+  hangupIncomingCall() {
+    if (this.incomingCall) {
+      console.log("Hangup")
+      this.incomingCall.hangup()
+    }
+  }
+
+  answerIncomingCall() {
+    if (this.incomingCall) {
+      this.answerCall(this.incomingCall);
+    }
+
+    this._setIncomingCall(null);
   }
 
   hangupCall() {
