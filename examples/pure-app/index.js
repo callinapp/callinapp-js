@@ -137,10 +137,12 @@ function login() {
 
   client.on(CallInAppEvent.ON_CONFERENCE_CHAT_MESSAGE, (err, [conference, message]) => {
     console.debug('[App] Conference chat message', conference, message);
+    showConferenceMessage(conference, message);
   });
 
   client.on(CallInAppEvent.ON_CHAT_MESSAGE, (err, message) => {
     console.debug('[App] Normal chat message', message);
+    showUserMessage(message);
   });
 
   client.on(CallInAppEvent.ON_CALL_STATE_UPDATE, (err, call) => {
@@ -280,10 +282,17 @@ function sendDtmf() {
 
 function sendChatMessage() {
   const message = document.getElementById('message-input').value;
+  const destination = document.getElementById('number-input').value;
+
   if (message) {
     if (!activeConference) {
+      if (!destination) {
+        alert('Please input destination number');
+        return;
+      }
+
       client.sendChat({
-        to: '9012@hosp.callinapp.com',
+        to: destination,
         body: message
       }).then(re => console.log('[App] Send normal chat to result', re));
     } else {
@@ -323,6 +332,37 @@ function stopTimer() {
   }
 }
 
+function showConferenceMessage(conference, message) {
+  showMessageNotification(message.from, message.message);
+}
+
+function showUserMessage(message) {
+  showMessageNotification(message.from, message.body);
+}
+
+function showMessageNotification(from, text) {
+  let message = `${from}: ${text}`;
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification(message);
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification(message);
+      }
+    });
+  }
+}
 // CallInAppUtil.mediaDevices.enumerateDevices().then((devices) => {
 //   console.log('[Devices]', devices)
 // });

@@ -1,3 +1,7 @@
+##### - V1.0.6
+ + Update change logs
+##### - V1.0.6
+ + Fix plan-b compatible browsers
 ##### - V1.0.5
  + Update example
 ##### - V1.0.4
