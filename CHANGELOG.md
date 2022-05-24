@@ -1,4 +1,6 @@
-##### - V1.0.6
+##### - V1.0.8
+ + Add Click & Conference testing site
+##### - V1.0.7
  + Update change logs
 ##### - V1.0.6
  + Fix plan-b compatible browsers

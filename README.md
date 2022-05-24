@@ -1,7 +1,17 @@
-## Introductions:
-The Call In App JavaScript SDK for integrating the Call In App features to your web app.
+# Introductions:
+Call In App JavaScript SDK for integrating the Call In App features to your web app.
 
-## SDK usage guidelines:
+# A click & conference - testing site
+**[https://test.callinapp.com/j/9999?PWD=test](https://test.callinapp.com/j/9999?PWD=test)**
+
+- You can change 9999 to any number e.i 8888, 1234,... that will be your unique conferenceId, sharing the link to anyone to join your meeting. 
+- It supports high-quality video conference with maximum 64 participants
+- It supports in-call snap chats, desktop sharing
+- As Admin, you can fully control the conference to mute/unmute, noice adjustment, or kick participants out of it.
+- It supports to record the call as well
+- Vice versa
+
+# SDK usage guidelines:
 Main components:
 
 - **CallInAppSession**: For initializing session from client to Call In App server.
@@ -61,7 +71,7 @@ Main components:
                     useAudio: (optional) true/false/MediaTrackConstraints
                 }
                 
-        ** Please refer the detailed docs for [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) if you really want to use `useVideo` and `useVideo`.
+        **- Please refer the detailed docs for [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) if you really want to use `useVideo` and `useVideo`.**
 
 - **CallInAppEvent**: Events will be emitted during the Call In App Session.
     We can catch those events with callback functions:
@@ -73,76 +83,76 @@ Main components:
             console.log(err, data);
         })
     
-    - ON_READY
-    - ON_CLOSED
-    - ON_ERROR
-    - ON_RETRYING
-    - ON_LOGIN_ERROR
-    - ON_LOGIN_SUCCESS
-    - ON_SPEED_CHANGE: 
-    - ON_USER_MEDIA_ERROR
-    - ON_USER_PEER_ERROR
-    - ON_INCOMING_CALL
-    - ON_RECOVERY_CALL
-    - ON_CALL_LOCAL_STREAM
-    - ON_CALL_REMOTE_STREAM
-    - ON_CALL_STATE_UPDATE
-    - ON_CONFERENCE_JOINED
-    - ON_CONFERENCE_LEFT
-    - ON_CONFERENCE_MEMBER_JOINED
-    - ON_CONFERENCE_MEMBER_LEFT
-    - ON_CONFERENCE_MEMBER_UPDATED
-    - ON_CONFERENCE_MEMBER_CLEARED
-    - ON_CONFERENCE_CHAT_MESSAGE
-    - ON_CHAT_MESSAGE
+    - `ON_READY`: On connection ready.
+    - `ON_CLOSED`: On connection closed.
+    - `ON_ERROR`: On connection failed.
+    - `ON_RETRYING`: On connection retrying after disconnected.
+    - `ON_LOGIN_ERROR`: On log in to Call In App server failed.
+    - `ON_LOGIN_SUCCESS`: On log in in successfully
+    - `ON_SPEED_CHANGE`: On speed response after `testSpeed()` called.
+    - `ON_USER_MEDIA_ERROR`: On permission to get your camera or mic not allowed
+    - `ON_USER_PEER_ERROR`: On RTC connection to server failed.
+    - `ON_INCOMING_CALL`: On incoming call.
+    - `ON_RECOVERY_CALL`: On call recovered after browser/app closed unexpectedly.
+    - `ON_CALL_LOCAL_STREAM`: On local stream attached on a call.
+    - `ON_CALL_REMOTE_STREAM`: On remote stream attached on a call.
+    - `ON_CALL_STATE_UPDATE`: On call state updated
+    - `ON_CONFERENCE_JOINED`: On your presence on a conference.
+    - `ON_CONFERENCE_LEFT`: On your leave on a conference.
+    - `ON_CONFERENCE_MEMBER_JOINED`: On a new member joined your conference.
+    - `ON_CONFERENCE_MEMBER_LEFT`: On a member left your conference.
+    - `ON_CONFERENCE_MEMBER_UPDATED`: On a member in your conference update info.
+    - `ON_CONFERENCE_MEMBER_CLEARED`: On all member in your conference left.
+    - `ON_CONFERENCE_CHAT_MESSAGE`: On a message sent to your conference.
+    - `ON_CHAT_MESSAGE`: Not supported currently
     
 - **CallState**:
-    - NEW
-    - REQUESTING
-    - TRYING
-    - RECOVERING
-    - RINGING
-    - ANSWERING
-    - EARLY
-    - ACTIVE
-    - HELD
-    - HANGUP
-    - DESTROYED
-    - PURGE
+    - `NEW`
+    - `REQUESTING`
+    - `TRYING`
+    - `RECOVERING`
+    - `RINGING`
+    - `ANSWERING`
+    - `EARLY`
+    - `ACTIVE`
+    - `HELD`
+    - `HANGUP`
+    - `DESTROYED`
+    - `PURGE`
     
 - **CallInAppUtil**: Some utility functions:
     - mediaDevices:
         - enumerateDevices(kind)
-            + kind: `audioinput`, `videoinput`, `audiooutput`
+            + kind: `audioinput`, `videoinput`, `audiooutput` or `undefined`
         - checkUserMediaPermission(constraints):
             + constraints: Refer to [MediaStreamConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints)
 
 - **Call**:
     - **Properties**:
-        + id
-        + localStream
-        + remoteStream
-        + state: **CallState**
+        + id: Call ID
+        + localStream: your local MediaStream
+        + remoteStream: Remote MediaStream
+        + state: **CallState**: Get call state
         + activeTime: Active time in milliseconds since January 1, 1970 (midnight UTC/GMT).
-        + screenShareCall
+        + screenShareCall: Sharing call if you're sharing screen
         + callType: inbound/outbound
-        + options
+        + options: Call options
         + isConference: Whether call is a conference.
     - **Functions**
-        + answer(options)
-        + hangup(options)
+        + answer(options): Answer a call
+        + hangup(options): Hang up call
         + toggleMuteMic()
         + muteMic()
         + unmuteMic()
         + toggleMuteCam()
         + muteCam()
         + unmuteCam()
-        + sendDtmf()
+        + sendDtmf(): Send DTFM code
         + toggleHold()
         + hold()
         + unhold()
-        + startScreenShare()
-        + stopScreenShare()
+        + startScreenShare(): Start screen share
+        + stopScreenShare(): Stop screen share
 
 - **Conference**:
     - **Properties**:
@@ -161,10 +171,11 @@ Main components:
         + volumeDown(memberId)
         + volumeUp(memberId)
         
-##Examples:
+#
+### **Examples**:
    Please refer to [examples](examples) for detailed usage.
    
-   If you need an account for running the example, please email to [Call In App Team](mailto:hoan@callinapp.com?subject=[CallInApp]%Example%20Account%20Request).
+   If you need an account for running the example, please email to [Call In App Team](mailto:hoan@callinapp.com?cc=baopn.hcmup@gmail.com,pdtoanstock@gmail.com&subject=[CallInApp]Example%20Account%20Request).
 
-##
-*** **TypeScript** support: Currently the SDK does not support TypeScript. We'll add it soon.
+#
+### **TypeScript** support: Currently the SDK does not support TypeScript. We'll add it soon.
